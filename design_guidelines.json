@@ -1,0 +1,180 @@
+{
+  "brand_identity": {
+    "name": "En Tu Sano Juicio",
+    "essence": "Night Luxe Healthy Food",
+    "core_values": ["Sophistication", "Health", "Efficiency", "Premium Quality"],
+    "archetype": "JEWEL & LUXURY (Archetype 5) mixed with PERFORMANCE PRO",
+    "emotional_goal": "Eating healthy is a premium lifestyle choice, not a compromise."
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Playfair Display, serif",
+      "weights": ["400", "600", "700"],
+      "usage": "All section titles, hero text, product names. Use tracking-tight for sizes > 32px."
+    },
+    "body": {
+      "font_family": "Manrope, sans-serif",
+      "weights": ["300", "400", "500", "600"],
+      "usage": "Descriptions, prices, UI elements, buttons."
+    },
+    "mono": {
+      "font_family": "JetBrains Mono, monospace",
+      "usage": "Prices, nutritional data, technical specs."
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": {
+        "default": "#0A0A0A",
+        "paper": "#121212",
+        "subtle": "#171717"
+      },
+      "text": {
+        "primary": "#EDEDED",
+        "secondary": "#A1A1AA",
+        "muted": "#52525B"
+      },
+      "primary": {
+        "main": "#C08040",
+        "light": "#D4A060",
+        "dark": "#8B5E30",
+        "contrast": "#000000"
+      },
+      "secondary": {
+        "main": "#064E3B",
+        "light": "#10B981",
+        "dark": "#022C22",
+        "contrast": "#FFFFFF"
+      },
+      "accent": {
+        "gold": "#FFD700",
+        "error": "#EF4444",
+        "success": "#10B981"
+      }
+    },
+    "gradients": {
+      "hero_overlay": "linear-gradient(to bottom, rgba(10,10,10,0.3), #0A0A0A)",
+      "copper_glow": "linear-gradient(135deg, #C08040 0%, #8B5E30 100%)"
+    }
+  },
+  "visual_enhancers": {
+    "radius": {
+      "default": "0px",
+      "buttons": "2px",
+      "cards": "4px"
+    },
+    "shadows": {
+      "card": "0 4px 20px -2px rgba(0, 0, 0, 0.5)",
+      "glow": "0 0 15px rgba(192, 128, 64, 0.2)"
+    },
+    "borders": {
+      "subtle": "1px solid rgba(255, 255, 255, 0.08)",
+      "highlight": "1px solid rgba(192, 128, 64, 0.3)"
+    },
+    "textures": {
+      "noise": "url('data:image/svg+xml;base64,...') opacity 0.03"
+    }
+  },
+  "layout_strategies": {
+    "marketing": {
+      "grid": "Bento Grid / Tetris Grid",
+      "spacing": "Generous (p-12 to p-24)",
+      "alignment": "Asymmetrical, Optical Alignment"
+    },
+    "menu": {
+      "grid": "Responsive Grid (1 col mobile, 2 col tablet, 3 col desktop)",
+      "card_style": "Minimalist, Image-First, Dark Glass overlay for text"
+    },
+    "dashboard": {
+      "grid": "High Density Grid",
+      "spacing": "Tight (gap-4)",
+      "style": "Sharp edges, data-focused, dark mode only"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#C08040] text-black hover:bg-[#D4A060] font-medium rounded-sm px-8 py-3 transition-all duration-300",
+      "secondary": "border border-[#C08040] text-[#C08040] hover:bg-[#C08040] hover:text-black rounded-sm px-8 py-3",
+      "ghost": "text-zinc-400 hover:text-white hover:bg-white/5"
+    },
+    "cards": {
+      "product": "bg-[#121212] border border-white/5 hover:border-[#C08040]/30 transition-all duration-300 group overflow-hidden relative",
+      "feature": "bg-transparent border-l border-white/10 pl-6 hover:border-[#C08040] transition-colors"
+    },
+    "inputs": {
+      "default": "bg-[#171717] border-white/10 focus:border-[#C08040] text-white placeholder:text-zinc-600 rounded-sm h-12"
+    },
+    "navigation": {
+      "bar": "fixed top-0 w-full z-50 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5"
+    }
+  },
+  "image_urls": {
+    "hero": [
+      {
+        "url": "https://images.unsplash.com/photo-1750943082012-efe6d2fd9e45?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwxfHxjaGVmJTIwcGxhdGluZyUyMGZvb2QlMjBkYXJrJTIwbW9vZHklMjBwaG90b2dyYXBoeXxlbnwwfHx8fDE3Njk2MTUwNjZ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Chef plating food, dark moody, perfect for Hero background",
+        "category": "hero"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1675328657878-194029e7ccbc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwzfHxnb3VybWV0JTIwaGVhbHRoeSUyMHBva2UlMjBib3dsJTIwZGFyayUyMGJhY2tncm91bmQlMjBwcm9mZXNzaW9uYWwlMjBwaG90b2dyYXBoeXxlbnwwfHx8fDE3Njk2MTUwMzh8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Black dinner plate on grey background, minimalist",
+        "category": "hero_secondary"
+      }
+    ],
+    "bowls": [
+      {
+        "url": "https://images.unsplash.com/photo-1758652561808-a0d9337fd57a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHw0fHxnb3VybWV0JTIwaGVhbHRoeSUyMHBva2UlMjBib3dsJTIwZGFyayUyMGJhY2tncm91bmQlMjBwcm9mZXNzaW9uYWwlMjBwaG90b2dyYXBoeXxlbnwwfHx8fDE3Njk2MTUwMzh8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark glass bowl with berries (can be used for acai/fruit bowls)",
+        "category": "product_bowl"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1678831654422-f4f8f22e0cd6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwyfHxmcmVzaCUyMHNhbGFkJTIwYm93bCUyMGluZ3JlZGllbnRzJTIwZGFyayUyMG1vb2R5JTIwbGlnaHRpbmd8ZW58MHx8fHwxNzY5NjE1MDQyfDA&ixlib=rb-4.1.0&q=85",
+        "description": "White bowl with salad on wooden table, dark lighting",
+        "category": "product_bowl"
+      }
+    ],
+    "wraps": [
+      {
+        "url": "https://images.unsplash.com/photo-1679744034962-c0650a2a20b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwyfHxnb3VybWV0JTIwYnVycml0byUyMHdyYXAlMjBjcm9zcyUyMHNlY3Rpb24lMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Njk2MTUwNjB8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Hand holding a healthy wrap, dark background",
+        "category": "product_wrap"
+      },
+      {
+        "url": "https://images.pexels.com/photos/5848057/pexels-photo-5848057.jpeg",
+        "description": "Wrap/Burrito cross section",
+        "category": "product_wrap"
+      }
+    ],
+    "ingredients": [
+      {
+        "url": "https://images.pexels.com/photos/952482/pexels-photo-952482.jpeg",
+        "description": "Fresh vegetables on black slate",
+        "category": "texture"
+      },
+      {
+        "url": "https://images.pexels.com/photos/3564599/pexels-photo-3564599.jpeg",
+        "description": "Vegetables on dark background",
+        "category": "texture"
+      }
+    ]
+  },
+  "universal_guidelines": {
+    "anti_ai_rules": [
+      "NO gradients on text unless specifically for a 'Gold' effect.",
+      "NO 'Inter' font for headings. Use Playfair Display.",
+      "NO pure black (#000000) backgrounds, use #0A0A0A.",
+      "NO centered text for long descriptions.",
+      "NO generic 'SaaS Blue' or 'Teal' colors."
+    ],
+    "accessibility": {
+      "contrast": "Ensure text is #EDEDED on dark backgrounds.",
+      "focus_states": "Use Copper (#C08040) ring for focus states."
+    },
+    "motion": {
+      "scroll": "Use Lenis for smooth scrolling.",
+      "hover": "Subtle lift (-2px) and glow on cards.",
+      "transitions": "All interactive elements must have duration-300 ease-out."
+    }
+  },
+  "instructions_to_main_agent": "You are building a Premium Dark Mode Food Delivery App. The aesthetic is 'Night Luxe'. Use the provided image URLs for the respective sections. Implement the 'Bento Grid' for the menu categories. Ensure the Admin Dashboard is dense and data-heavy, while the Customer facing pages are spacious and editorial. Use 'Playfair Display' for all headings to give it that gourmet feel. Do not deviate from the Dark Mode requirement."
+}
