@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-01-28T15:54:49.827920",
+  "api_url": "https://fusionfoods.preview.emergentagent.com/api",
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "success_rate": 100.0,
+  "test_results": [
+    {
+      "test_name": "API Root Endpoint",
+      "status": "PASSED",
+      "details": "Status: 200, Message: En Tu Sano Juicio API",
+      "expected": "En Tu Sano Juicio API",
+      "actual": "En Tu Sano Juicio API"
+    },
+    {
+      "test_name": "GET /api/products",
+      "status": "PASSED",
+      "details": "Found 9 products with correct structure and categories: {'ensaladas', 'bowls', 'wraps'}",
+      "expected": "9 products with correct structure",
+      "actual": "9 products"
+    },
+    {
+      "test_name": "POST /api/admin/login",
+      "status": "PASSED",
+      "details": "Login successful, token received: admin-token-123...",
+      "expected": "success=True with token",
+      "actual": "success=True, token=True"
+    },
+    {
+      "test_name": "GET /api/admin/stats",
+      "status": "PASSED",
+      "details": "Stats: products=9, orders=0, revenue=0\u20ac",
+      "expected": "All required stats fields present",
+      "actual": "Fields: ['total_products', 'total_orders', 'pending_orders', 'paid_orders', 'total_revenue']"
+    },
+    {
+      "test_name": "POST /api/orders",
+      "status": "PASSED",
+      "details": "Order created successfully: ID=1cb925aa..., Total=13.0\u20ac",
+      "expected": "Order with total 13.0\u20ac",
+      "actual": "Order with total 13.0\u20ac"
+    }
+  ]
+}
