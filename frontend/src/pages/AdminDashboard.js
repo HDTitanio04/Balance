@@ -505,7 +505,7 @@ const AdminDashboard = () => {
   );
 };
 
-// Product Form Component
+// Product Form Component with Ingredients (Escandallos)
 const ProductForm = ({ product, onClose, onSave }) => {
   const [formData, setFormData] = useState({
     name: product?.name || '',
@@ -514,10 +514,51 @@ const ProductForm = ({ product, onClose, onSave }) => {
     price: product?.price || '',
     image_url: product?.image_url || '',
     food_cost: product?.food_cost || 0,
-    is_available: product?.is_available ?? true
+    is_available: product?.is_available ?? true,
+    ingredients: product?.ingredients || []
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showIngredients, setShowIngredients] = useState(false);
+
+  const addIngredient = () => {
+    setFormData({
+      ...formData,
+      ingredients: [
+        ...formData.ingredients,
+        { name: '', quantity: 0, unit: 'g', unit_cost: 0, total_cost: 0 }
+      ]
+    });
+  };
+
+  const updateIngredient = (index, field, value) => {
+    const newIngredients = [...formData.ingredients];
+    newIngredients[index][field] = field === 'name' || field === 'unit' ? value : parseFloat(value) || 0;
+    
+    // Auto-calculate total_cost
+    if (field === 'quantity' || field === 'unit_cost') {
+      newIngredients[index].total_cost = newIngredients[index].quantity * newIngredients[index].unit_cost;
+    }
+    
+    // Update food_cost as sum of all ingredients
+    const totalFoodCost = newIngredients.reduce((sum, ing) => sum + (ing.total_cost || 0), 0);
+    
+    setFormData({
+      ...formData,
+      ingredients: newIngredients,
+      food_cost: totalFoodCost
+    });
+  };
+
+  const removeIngredient = (index) => {
+    const newIngredients = formData.ingredients.filter((_, i) => i !== index);
+    const totalFoodCost = newIngredients.reduce((sum, ing) => sum + (ing.total_cost || 0), 0);
+    setFormData({
+      ...formData,
+      ingredients: newIngredients,
+      food_cost: totalFoodCost
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -546,7 +587,7 @@ const ProductForm = ({ product, onClose, onSave }) => {
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-[#121212] border border-white/5 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div className="bg-[#121212] border border-white/5 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-4 border-b border-white/5">
           <h3 className="font-['Playfair_Display'] text-xl font-semibold text-white">
             {product ? 'Editar Producto' : 'Nuevo Producto'}
@@ -617,15 +658,86 @@ const ProductForm = ({ product, onClose, onSave }) => {
             />
           </div>
 
-          <div>
-            <label className="block text-sm text-zinc-400 mb-2">Food Cost (€)</label>
-            <input
-              type="number"
-              step="0.01"
-              value={formData.food_cost}
-              onChange={(e) => setFormData({ ...formData, food_cost: e.target.value })}
-              className="w-full px-4 py-3 bg-[#171717] border border-white/10 focus:border-[#C08040] text-white"
-            />
+          {/* Ingredientes / Escandallo */}
+          <div className="border border-white/10 p-4">
+            <button
+              type="button"
+              onClick={() => setShowIngredients(!showIngredients)}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <span className="text-white font-medium flex items-center">
+                <DollarSign className="w-4 h-4 mr-2 text-[#C08040]" />
+                Escandallo / Ingredientes ({formData.ingredients.length})
+              </span>
+              {showIngredients ? <ChevronUp className="w-5 h-5 text-zinc-400" /> : <ChevronDown className="w-5 h-5 text-zinc-400" />}
+            </button>
+
+            {showIngredients && (
+              <div className="mt-4 space-y-3">
+                {formData.ingredients.map((ing, idx) => (
+                  <div key={idx} className="grid grid-cols-12 gap-2 items-center">
+                    <input
+                      type="text"
+                      value={ing.name}
+                      onChange={(e) => updateIngredient(idx, 'name', e.target.value)}
+                      placeholder="Ingrediente"
+                      className="col-span-4 px-2 py-2 bg-[#171717] border border-white/10 text-white text-sm"
+                    />
+                    <input
+                      type="number"
+                      value={ing.quantity}
+                      onChange={(e) => updateIngredient(idx, 'quantity', e.target.value)}
+                      placeholder="Cant."
+                      className="col-span-2 px-2 py-2 bg-[#171717] border border-white/10 text-white text-sm"
+                    />
+                    <select
+                      value={ing.unit}
+                      onChange={(e) => updateIngredient(idx, 'unit', e.target.value)}
+                      className="col-span-2 px-2 py-2 bg-[#171717] border border-white/10 text-white text-sm"
+                    >
+                      <option value="g">g</option>
+                      <option value="ml">ml</option>
+                      <option value="u">u</option>
+                      <option value="kg">kg</option>
+                    </select>
+                    <input
+                      type="number"
+                      step="0.0001"
+                      value={ing.unit_cost}
+                      onChange={(e) => updateIngredient(idx, 'unit_cost', e.target.value)}
+                      placeholder="€/u"
+                      className="col-span-2 px-2 py-2 bg-[#171717] border border-white/10 text-white text-sm"
+                    />
+                    <span className="col-span-1 text-xs text-emerald-400 font-mono">
+                      {ing.total_cost?.toFixed(2)}€
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => removeIngredient(idx)}
+                      className="col-span-1 p-1 text-red-400 hover:text-red-300"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+                
+                <button
+                  type="button"
+                  onClick={addIngredient}
+                  className="flex items-center space-x-2 text-sm text-[#C08040] hover:text-[#D4A060]"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Añadir ingrediente</span>
+                </button>
+
+                <div className="flex justify-between pt-3 border-t border-white/10">
+                  <span className="text-zinc-400">Food Cost Total:</span>
+                  <span className="font-mono text-emerald-400 font-semibold">
+                    {formData.food_cost.toFixed(2)}€
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
 
           <label className="flex items-center space-x-3 cursor-pointer">
