@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
 
 // Context Providers
@@ -23,7 +23,7 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <BrowserRouter>
+        <HashRouter>
           <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
             <Navbar />
             <Cart />
@@ -49,7 +49,7 @@ function App() {
               }}
             />
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </CartProvider>
     </AuthProvider>
   );
