@@ -359,14 +359,7 @@ async def update_product(product_id: str, product_update: ProductUpdate):
 
 @api_router.delete("/products/{product_id}")
 async def delete_product(product_id: str):
-    """Delete a product (admin only) - Cannot delete initial products"""
-    # No permitir borrar productos iniciales
-    if product_id in INITIAL_PRODUCT_IDS:
-        raise HTTPException(
-            status_code=403, 
-            detail="No se pueden eliminar los productos iniciales del menú. Solo puedes desactivarlos."
-        )
-    
+    """Delete a product (admin only)"""
     result = await db.products.delete_one({"id": product_id})
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Product not found")
