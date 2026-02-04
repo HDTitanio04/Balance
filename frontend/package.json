@@ -1,6 +1,7 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "en-tu-sano-juicio",
+  "version": "1.0.0",
+  "homepage": "https://hdtitanio04.github.io/Balance",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
