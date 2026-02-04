@@ -269,18 +269,41 @@ INITIAL_PRODUCTS = [
 
 # ==================== STARTUP EVENT ====================
 
+# IDs fijos para productos iniciales (para que no se borren)
+INITIAL_PRODUCT_IDS = [
+    "prod-quinoa-bowl-001",
+    "prod-alcachofa-002",
+    "prod-poke-tofu-003",
+    "prod-lentejas-004",
+    "prod-wrap-lechuga-005",
+    "prod-fideos-arroz-006",
+    "prod-ensalada-pollo-007",
+    "prod-avena-salada-008",
+    "prod-mediterraneo-009"
+]
+
 @app.on_event("startup")
 async def startup_event():
-    """Initialize products if database is empty"""
-    count = await db.products.count_documents({})
-    if count == 0:
-        logger.info("Initializing products database with escandallos...")
-        for product_data in INITIAL_PRODUCTS:
-            product = Product(**product_data)
+    """Initialize products - ensures all initial products exist"""
+    logger.info("Checking products database...")
+    
+    # Verificar cada producto inicial y añadirlo si falta
+    for idx, product_data in enumerate(INITIAL_PRODUCTS):
+        fixed_id = INITIAL_PRODUCT_IDS[idx]
+        existing = await db.products.find_one({"id": fixed_id})
+        
+        if not existing:
+            logger.info(f"Adding missing product: {product_data['name']}")
+            product_data_copy = product_data.copy()
+            product_data_copy['id'] = fixed_id
+            product = Product(**product_data_copy)
             doc = product.model_dump()
+            doc['id'] = fixed_id  # Asegurar ID fijo
             doc['created_at'] = doc['created_at'].isoformat()
             await db.products.insert_one(doc)
-        logger.info(f"Added {len(INITIAL_PRODUCTS)} products")
+    
+    count = await db.products.count_documents({})
+    logger.info(f"Products database ready: {count} products")
 
 # ==================== PRODUCT ENDPOINTS ====================
 
